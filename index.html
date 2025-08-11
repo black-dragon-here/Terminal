@@ -1,113 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Page title</title>
-  <style>
-    body {
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      align-items: flex-start;
-      margin: 0;
-      min-height: 100vh;
-      background: black;
-      color: #00ff00;
-      font-family: monospace;
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page title</title>
+    <style>
+      body {
+        /* Quotes hata diye display: flex se */
+      
+        max-height: 80vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start; /* content top se start ho */
+        align-items: flex-start;     /* left align rahe */
+        margin: 0;
+        min-height: 100vh;
 
-      /* Background properties default - will be changed in JS after hack */
-      background-repeat: no-repeat;
-      background-position: center;
-      background-size: contain;
-    }
-
-    .container {
-      margin: 1rem 1rem 1rem 1rem; /* thoda padding, responsive margin */
-      max-width: 90vw; /* screen ke 90% tak width */
-      font-size: clamp(1rem, 3vw, 2rem); /* responsive font size: min 1rem, max 2rem */
-      word-break: break-word; /* long words bhi break ho jayen */
-    }
-
-    .same {
-      color: red;
-      margin: 0;
-      padding: 0.5rem 0;
-    }
-
-    #progress {
-      margin: 0 1rem 1rem 1rem;
-      white-space: pre-wrap;
-      font-size: clamp(1rem, 3vw, 2rem);
-    }
-  </style>
+        background: black;
+        color: #00ff00;
+        font-family: monospace;
+      }
+      .container {
+          margin-left: 10px; /* thoda left margin, optional */
+          font-size: 30px;
+      }  
+      .same {
+          color: red;
+          margin: 0;
+          padding: 10px 0;
+      }
+      #progress {
+          margin-left: 10px; /* thoda left margin */
+          white-space: pre-wrap; /* line breaks maintain karne ke liye */
+      }
+    </style>
 </head>
 <body>
-  <div class="container"></div>
-  <pre id="progress"></pre>
+    <div class="container"></div>
+    <pre id="progress"></pre>
+    <script>
+        let count = 0;
+        setInterval(() => {
+          function dots1() {
+            count = (count + 1) % 4;
+            document.querySelectorAll('.dots').forEach((el) => {
+              el.textContent = '.'.repeat(count);
+            });
+          }
+          dots1();
+        }, 500);
 
-  <script>
-    let count = 0;
-    setInterval(() => {
-      function dots1() {
-        count = (count + 1) % 4;
-        document.querySelectorAll('.dots').forEach((el) => {
-          el.textContent = '.'.repeat(count);
-        });
-      }
-      dots1();
-    }, 500);
-
-    let random = Math.round(Math.random() * 7000);
-
-    setTimeout(() => {
-      let text = '<div class="first same">Initializing Hacking<span class="dots"></span></div>';
-      document.querySelector('.container').innerHTML = text;
-
-      setTimeout(() => {
-        let text2 = '<div class="second same">    Reading your Files<span class="dots"></span></div>';
-        document.querySelector('.container').innerHTML += text2;
+        let random = Math.round(Math.random() * 7000);
 
         setTimeout(() => {
-          let text3 = '<div class="third same">        Password files Detected<span class="dots"></span></div>';
-          document.querySelector('.container').innerHTML += text3;
+          let text = '<div class="first same">Initializing Hacking<span class="dots"></span></div>';
+          document.querySelector('.container').innerHTML = text;
 
           setTimeout(() => {
-            let text4 = '<div class="forth same">    Sending all passwords and personal files to server<span class="dots"></span></div>';
-            document.querySelector('.container').innerHTML += text4;
+            let text2 = '<div class="second same">    Reading your Files<span class="dots"></span></div>';
+            document.querySelector('.container').innerHTML += text2;
 
             setTimeout(() => {
-              let text5 = '<div class="forth same">    Sending all passwords and personal files to server<span class="dots"></span></div>';
-              document.querySelector('.container').innerHTML += text5;
+              let text3 = '<div class="third same">        Password files Detected<span class="dots"></span></div>';
+              document.querySelector('.container').innerHTML += text3;
 
-              let bar = "";
-              let progressEl = document.getElementById("progress");
-              progressEl.textContent = "Loading: ";
+              setTimeout(() => {
+                let text4 = '<div class="forth same">    Sending all passwords and personal files to server<span class="dots"></span></div>';
+                document.querySelector('.container').innerHTML += text4;
 
-              let interval = setInterval(() => {
-                if (bar.length < 30) {
-                  bar += "#";
-                  progressEl.textContent = "Loading: [" + bar.padEnd(30, " ") + "]";
-                } else {
-                  clearInterval(interval);
-                  progressEl.textContent += " HACKED!";
+                setTimeout(() => {
+                  let text5 = '<div class="forth same">    Sending all passwords and personal files to server<span class="dots"></span></div>';
+                  document.querySelector('.container').innerHTML += text5;
 
-                  // Background image with proper centering and sizing
-                  document.body.style.backgroundImage = "url('https://img.freepik.com/free-vector/red-demon-skull-with-horn_43623-1637.jpg')";
-                  document.body.style.backgroundSize = "contain"; // image pura dikhega
-                  document.body.style.backgroundPosition = "center";
-                  document.body.style.backgroundRepeat = "no-repeat";
+                  let bar = "";
+                  let progressEl = document.getElementById("progress");
+                  progressEl.textContent = "Loading: ";
 
-                  // Content alignment reset to top-left so text stays at normal place
-                  document.body.style.justifyContent = "flex-start";
-                  document.body.style.alignItems = "flex-start";
-                }
-              }, 100);
+                  let interval = setInterval(() => {
+                    if (bar.length < 30) {
+                      bar += "#";
+                      progressEl.textContent = "Loading: [" + bar.padEnd(30, " ") + "]";
+                    } else {
+                      clearInterval(interval);
+                      progressEl.textContent += " HACKED!";
+                     
+
+                      // Background image with proper centering and sizing
+                      document.body.style.backgroundImage = "url('https://img.freepik.com/free-vector/red-demon-skull-with-horn_43623-1637.jpg')";
+                      document.body.style.backgroundSize = "contain";   // pura dikhega image, crop nahi hoga
+                      document.body.style.backgroundPosition = "center";
+                      document.body.style.backgroundRepeat = "no-repeat";
+
+                      // Content alignment reset to top-left so text stays at normal place
+                      document.body.style.justifyContent = "flex-start";
+                      document.body.style.alignItems = "flex-start";
+                    }
+                  }, 100);
+                }, random);
+              }, random);
             }, random);
           }, random);
         }, random);
-      }, random);
-    }, random);
-  </script>
+    </script>
 </body>
 </html>
